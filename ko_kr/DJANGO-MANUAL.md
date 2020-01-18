@@ -179,6 +179,7 @@ urlpatterns = [
 <strong> 파이썬을 잘 안다면 어떤 것의 이름은 자기가 알아서 설정해도 된다는 것을 알 것이다. </strong>
 
 <h4>path() 함수에 대한 설명</h4>  
+
 ```text
 path() : 2개의 필수 인수 route, view // 2개의 선택 인수 kwargs, name 총 4개의 인수가 있다.  
 path() : route  
