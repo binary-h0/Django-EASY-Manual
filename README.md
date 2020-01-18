@@ -1,3 +1,5 @@
+[![HitCount](http://hits.dwyl.io/truejin/Django-EASY-Manual.svg)](http://hits.dwyl.io/truejin/Django-EASY-Manual)  
+
 <div style="text-align: center">
 <img src="img/django.png" alt="django">
 </div>
