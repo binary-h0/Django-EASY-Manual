@@ -40,7 +40,7 @@
 
 <h2> 간단한 설명 및 프로젝트 구조</h2>
 
-우선 Django가 잘 깔려있는지 버전을 확인해보자  
+우선 Django가 잘 설치되어 있는지 버전을 확인해보자  
 `$ python -m django --version`
 
 확인되었다면 이제 Django프로젝트를 만들어 보자  
@@ -104,7 +104,7 @@ Django 에서는 되도록이면 `/var/www/html/` 과 같은 곳에 만들지 �
 
 ---
 
-만약 이 문서 모두 읽는다면 당신은 다음과 같은 프로젝트 구조를 가지게 될 것이다.  
+만약 이 문서의 모든 단원을 모두 읽는다면 당신은 다음과 같은 프로젝트 구조를 가지게 될 것이다.  
 ```text
 [프로젝트 이름]/
     manage.py   # 프로젝트와 상호작용하는 커맨드라인 유틸리티
@@ -148,6 +148,17 @@ Django 에서는 되도록이면 `/var/www/html/` 과 같은 곳에 만들지 �
 
 <h2>URL 요청과 응답</h2>
 
+<h3>첫 번째 뷰 제작</h3>
+
+[앱 이름]/views.py 에 들어가 다음의 코드를 입력해 보자
+
+```python
+from django.http import HttpResponse
+
+def main(request):
+    return HttpResponse("Hello")
+```
+
 앱을 처음 제작하면 [앱 이름] 디렉토리 안에 urls.py 가 없다.  
 만들도록 하자.  
 
@@ -179,7 +190,6 @@ urlpatterns = [
 <strong> 파이썬을 잘 안다면 어떤 것의 이름은 자기가 알아서 설정해도 된다는 것을 알 것이다. </strong>
 
 <h4>path() 함수에 대한 설명</h4>  
-
 ```text
 path() : 2개의 필수 인수 route, view // 2개의 선택 인수 kwargs, name 총 4개의 인수가 있다.  
 path() : route  
@@ -194,3 +204,19 @@ path() : name
         단 하나의 파일만 수정해도 프로젝트 내의 모든 URL 패턴을 바꿀 수 있도록 도와준다. (URL Reversing을 위해)
 ```
 
+<h3>요청과 응답의 과정</h3>
+
+```text
+"클라이언트" ==127.0.0.1:8000/[앱 이름]/==> "서버"
+                        전달
+"서버":
+1. [프로젝트 이름]/urls.py 
+2. [앱 이름]/urls.py
+3. [앱 이름]/views.py
+
+1. --> 2. --> 3. 
+
+"서버" : 1. [프로젝트 이름]/urls.py 에서 '/[앱 이름]/' 확인 후 [앱 이름]/urls.py 호출 
+         2. [앱 이름]/urls.py 에서 /'' 확인 views.main 함수 호출 
+         3. views.main 함수 리턴 값 반환
+```
