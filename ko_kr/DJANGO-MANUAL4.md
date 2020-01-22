@@ -29,21 +29,21 @@ tests.py 에서 어떻게 테스트케이스를 짜야하는지에 대해서는 
 <h4>앱 패키징 하기</h4>
 
 1. 먼저 Django 프로젝트 디렉토리 외부에 앱을 담을 디렉토리를 만드는데 이때 이름은  
-"django-[앱 이름]" 으로 설정하는 것을 권장한다.  
+`"django-[앱 이름]"` 으로 설정하는 것을 권장한다.  
 
-2. django-[앱 이름] 디렉토리로 앱을 옮긴다.  
+2. `django-[앱 이름]` 디렉토리로 앱을 옮긴다.  
 
-3. django-[앱 이름] 에 README.rst 파일을 만든다.   
+3. `django-[앱 이름]` 에 `README.rst` 파일을 만든다.   
 여기서 README.rst 파일은 앱의 "표지", 어떻게 사용하는지 알려주는 "목차" 역할을 한다.
 
-4. django-[앱 이름] 에 LICENSE 파일을 만든다.  
+4. `django-[앱 이름]` 에 `LICENSE` 파일을 만든다.  
 대부분 Django 호환 앱은 BSD 라이센스로 배포된다.  
 
-5. django-[앱 이름] 에 setup.cfg 와 setup.py 를 만든다.  
+5. `django-[앱 이름]` 에 `setup.cfg` 와 `setup.py` 를 만든다.  
 
 ---
 
-setup.cfg 예시
+`setup.cfg` 예시
 
 ```buildoutcfg
 [metadata]
@@ -78,7 +78,7 @@ packages = find:
 
 ---
 
-setup.py 예시 (간단하다.)
+`setup.py` 예시 (간단하다.)
 
 ```python
 from setuptools import setup
@@ -88,11 +88,11 @@ setup()
 
 ---
 
-django-[앱 이름] 에 MANIFEST.in 파일을 만든다.  
+`django-[앱 이름]` 에 `MANIFEST.in` 파일을 만든다.  
 지금까지 우리는 파이썬 모듈과 패키지만 포함했는데 추가 파일을 포함시키기 위해서는  
-MANIFEST.in 파일에 작성하여 포함시켜야 한다.  
+`MANIFEST.in` 파일에 작성하여 포함시켜야 한다.  
 
-MANIFEST.in 예시
+`MANIFEST.in` 예시
 
 ```text
 include LICENSE
@@ -105,14 +105,14 @@ recursive-include docs *
 ---
 
 선택 사항이지만 자세한 설명을 하는 문서를 추가 시키는 것을 추천한다.  
-django-[앱 이름] 에 docs 라는 빈 디렉토리를 생성하고 MANIFEST.in 에 다음 한 줄을 추가한다.  
+`django-[앱 이름]` 에 docs 라는 빈 디렉토리를 생성하고 `MANIFEST.in` 에 다음 한 줄을 추가한다.  
 `recursive-include docs *`
 
 ---
 
 `$ python setup.py sdist` 를 입력하여 패키지를 빌드한다.  
 
-"django-[앱 이름]-0.1.tar.gz" 라는 파일이 생성되면  
+`"django-[앱 이름]-0.1.tar.gz"` 라는 파일이 생성되면  
 패키지 만들기에 성공한 것이다.  
 
 우리가 만든 패키지를 다시 설치해보자 프로젝트 파일에서 다음의 명령어를 입력한다.  
@@ -131,4 +131,4 @@ django-[앱 이름] 에 docs 라는 빈 디렉토리를 생성하고 MANIFEST.in
 아직, Django 내부 템플릿이나 내부 기능들에 대해 설명을 하지 않았지만 그래도 Django 를 어떻게 써야 하는지  
 감을 잡는데 도움되었으면 한다.  
 부족한 내용이 있다면 수정도 하고 추가적인 내용도 덧붙일 계획이 있으니  
-개선할 내용 및 알고싶은 내용이 있다면 max000807@gmail.com 으로 메일을 보내도 좋다.
+개선할 내용 및 알고싶은 내용이 있다면 `max000807@gmail.com` 으로 메일을 보내도 좋다.

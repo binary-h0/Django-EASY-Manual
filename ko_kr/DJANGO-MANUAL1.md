@@ -12,13 +12,21 @@
 ---
 
 <h3>목차</h3>
+
 0. 들어가기 전...
+
 1. 간단한 설명 및 프로젝트 구조
+
 2. URL 요청과 응답
+
 3. 모델과 관리자페이지
+
 4. 뷰와 템플릿
+
 5. 정적 파일
+
 6. 테스팅
+
 7. 재사용 가능한 앱 패키징
 
 ---
@@ -88,6 +96,7 @@ Django 에서는 되도록이면 `/var/www/html/` 과 같은 곳에 만들지 �
 앱 생성: `python manage.py startapp [앱 이름]`
 
 만들어진 앱의 디렉토리를 보자  
+
 ```text
 [앱 이름]/
     __init__.py
@@ -100,11 +109,13 @@ Django 에서는 되도록이면 `/var/www/html/` 과 같은 곳에 만들지 �
     views.py
     urls.py
 ```
+
 <h6>각각의 파일 기능과 의미는 바로 아래 상세하게 나온다.</h2>  
 
 ---
 
 만약 이 문서의 모든 단원을 모두 읽는다면 당신은 다음과 같은 프로젝트 구조를 가지게 될 것이다.  
+
 ```text
 [프로젝트 이름]/
     manage.py   # 프로젝트와 상호작용하는 커맨드라인 유틸리티
@@ -140,6 +151,7 @@ Django 에서는 되도록이면 `/var/www/html/` 과 같은 곳에 만들지 �
         admin/   # Django 가 구분하기 위해 만든 디렉토리
             [...].html   # 설명 생략
 ```
+
 이미 웹 프레임워크에 익숙하다면 감을 잡았을 수도 있지만 그렇지 않다면,  
 아직 감이 잘 오지 않을 것이다.  
 이제 본격적으로 알아보며 감을 잡아보자
@@ -150,7 +162,7 @@ Django 에서는 되도록이면 `/var/www/html/` 과 같은 곳에 만들지 �
 
 <h3>첫 번째 뷰 제작</h3>
 
-[앱 이름]/views.py 에 들어가 다음의 코드를 입력해 보자
+`[앱 이름]/views.py` 에 들어가 다음의 코드를 입력해 보자
 
 ```python
 from django.http import HttpResponse
@@ -159,12 +171,13 @@ def main(request):
     return HttpResponse("Hello")
 ```
 
-앱을 처음 제작하면 [앱 이름] 디렉토리 안에 urls.py 가 없다.  
+앱을 처음 제작하면 `[앱 이름]` 디렉토리 안에 `urls.py` 가 없다.  
 만들도록 하자.  
 
-이 [앱 이름]/urls.py 를 이용해 views.py 에 있는 함수(method)를 호출한다.  
-그럼 이제 최상위 [프로젝트 이름]/urls.py 에서 [앱 이름]/urls.py 를 보게 설정해야 한다.  
-[프로젝트 이름]/urls.py 에 들어가서  
+이 `[앱 이름]/urls.py` 를 이용해 `views.py` 에 있는 함수(method)를 호출한다.  
+그럼 이제 최상위 `[프로젝트 이름]/urls.py` 에서 `[앱 이름]/urls.py` 를 보게 설정해야 한다.  
+`[프로젝트 이름]/urls.py` 에 들어가서  
+
 ```python
 from django.contrib import admin
 from django.urls import include, path
@@ -175,8 +188,9 @@ urlpatterns = [
 ]
 ``` 
 
-그럼 이제 [앱 이름]/urls.py 가 views.py 를 보게 하자.  
-[앱 이름]/urls.py 에 들어가서 
+그럼 이제 `[앱 이름]/urls.py` 가 `views.py` 를 보게 하자.  
+`[앱 이름]/urls.py` 에 들어가서 
+
 ```python
 from django.urls import path
 from . import views
@@ -187,9 +201,11 @@ urlpatterns = [
     path('', views.main, name='main'),
 ]
 ```
+
 <strong> 파이썬을 잘 안다면 어떤 것의 이름은 자기가 알아서 설정해도 된다는 것을 알 것이다. </strong>
 
 <h4>path() 함수에 대한 설명</h4>  
+
 ```text
 path() : 2개의 필수 인수 route, view // 2개의 선택 인수 kwargs, name 총 4개의 인수가 있다.  
 path() : route  
@@ -221,4 +237,4 @@ path() : name
          3. views.main 함수 리턴 값 반환
 ```
 
-다음 <strong> "3. 모델과 관리자페이지" </strong> 는 DJANGO-MANUAL2 에서 이어진다.
+다음 <strong> "3. 모델과 관리자페이지" </strong> 는 <strong>DJANGO-MANUAL2</strong> 에서 이어진다.

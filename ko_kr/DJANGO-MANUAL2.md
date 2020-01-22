@@ -15,14 +15,14 @@ Django 에서는  mysql, postgresql, sqlite3, oracle 등 다양한 DB 를 사용
 <br>
 <br>
 
-Django 에서 models.py 의 역할은 데이터베이스 설정 및 관리의 역할을 한다.  
+Django 에서 `models.py` 의 역할은 데이터베이스 설정 및 관리의 역할을 한다.  
 Django 와 MySQL 연동을 위해 다음의 명령어를 입력하자.  
 `$ pip install mysqlclient`
 
 Django 프로젝트에 사용할 DATABASE를 미리 만들어야 한다.  
 DATABASE를 만들도록 하자.
 
-이제 우리는 [프로젝트 이름]/settings.py 에 들어가 DATABASE = {...} 부분을 수정해야 한다.  
+이제 우리는 `[프로젝트 이름]/settings.py` 에 들어가 DATABASE = {...} 부분을 수정해야 한다.  
 
 ```python
 DATABASES = {
@@ -48,7 +48,7 @@ TIME_ZONE='Asia/Seoul'
 USE_TZ=False
 ```
 
-클라이언트에 표시되는 시간은 한국 시간이지만 DB 에 저장되는 시간이 다르다면 자기가 스스로 왜 그런지 알아보자.  
+나중에, 클라이언트에 표시되는 시간은 한국 시간이지만 DB 에 저장되는 시간이 다르다면 자기가 스스로 왜 그런지 알아보자.  
 <h6>사실 from django.utils import timezone 을 하면 된다. 이건 비밀이다.</h6>
 
 INSTALLED_APPS 의 의미는 프로젝트내에서 사용할 앱 들을 말한다.  
@@ -80,9 +80,10 @@ auth_user_user_permissions
 이제 어느덧 우리가 만든 앱에서 사용할 TABLE 이 필요한 순간이 왔다.  
 어떻게 우리만의 TABLE 들을 Django 내에서 만들 수 있을까?  
 
-그렇다, [앱 이름]/models.py 의 필드 영역을 이용하면 된다.  
+그렇다, `[앱 이름]/models.py` 의 필드 영역을 이용하면 된다.  
 
 지금부터는 예시와 함꼐 설명을 하겠다.  
+
 ```python
 from django.db import models
 
@@ -102,23 +103,23 @@ class Choice(models.Model):
 <strong>아주 쉽게</strong> 설명을 해보자면 현재 2 개의 클래스가 있다.  
 바로 Question 과 Choice 이 클래스들의 이름은 TABLE 들의 이름이 된다.  
 
-Question 은 "[앱 이름]_question"  
-Choice 는 "[앱 이름]_choice" 로 저장된다.  
+Question 은 `"[앱 이름]_question"`  
+Choice 는 `"[앱 이름]_choice"` 로 저장된다.  
 
 TABLE 의 이름을 설정하는 법 참 쉽다.  
 
 클래스내에는 인스턴스가 있다.  
-Question 클래스를 보면 question_text, pub_date 라는 인스턴스가 있다.  
+Question 클래스를 보면 `question_text`, `pub_date` 라는 인스턴스가 있다.  
 이 둘의 인스턴스 이름은 TABLE 의 Cloumn 명으로 된다.  
 
 column 명 설정하기 참 쉽다.  
 
 아니 그럼 인스턴스의 속성은 무엇인가..?  
-question_text 를 보면 models.CharField(max_length=200) 라고 되어있는데 이게 도대체 뭘까?  
+`question_text` 를 보면 `models.CharField(max_length=200)` 라고 되어있는데 이게 도대체 뭘까?  
 그렇다, Column Type 이 되겠다.  
 
-models.CharField(max_length=200) 은 varchar(200)을 의미하고,  
-models.DateTimeField('date published') 는 datetime을 나타낸다.  
+`models.CharField(max_length=200)` 은 `varchar(200)`을 의미하고,  
+`models.DateTimeField('date published')` 는 `datetime` 을 나타낸다.  
 당연하게도 각각의 인수값을 이용하여 Column 의 기본 값 설정 및 제한 또한 설정 가능하다.  
 
 Column Type 설정하기 참 쉽다.  
@@ -128,7 +129,7 @@ Column Type 설정하기 참 쉽다.
 
 참 편하다.
 
-Choice 클래스를 보면 ForeignKey 를 사용한 인스턴스가 있는데 이것은 무엇일까?  
+Choice 클래스를 보면 `ForeignKey` 를 사용한 인스턴스가 있는데 이것은 무엇일까?  
 바로, DB간 다-대-일(many-to-one), 다-대-다(many-to-many), 일-대-일(one-to-one) 과 같은 DB 관계설정을 할 수 있다.  
 
 
@@ -155,7 +156,7 @@ models.py 는 데이터베이스 설정 뿐만 아니라 데이터베이스를 �
 말하지 않겠다.  
 
 우리는 각각의 입맛에 맞게 데이터베이스를 설정하였음으로 이제  
-[프로젝트 이름]/settings.py 의 INSTALLED_APPS 에 다음과 같이  
+`[프로젝트 이름]/settings.py` 의 INSTALLED_APPS 에 다음과 같이  
 우리가 생성한 앱도 사용하겠다고 추가하면 된다.  
 
 ```python
@@ -168,9 +169,9 @@ INSTALLED_APPS = [
 우리가 만든 앤도 사용하겠다고 추가했으니 다음의 명령을 입력하자.  
 `$ python manage.py makemigrations [앱 이름]`
 
-그러면 [앱 이름]/migrations/0001_initial.py 가 추가되었을 것이다.  
+그러면 `[앱 이름]/migrations/0001_initial.py` 가 추가되었을 것이다.  
 그리고 자신의 DATABASE 를 확인하여 보자.  
 
 잘 되었는가??
 
-다음 <strong> "4. 뷰와 템플릿" </strong> 은 DJANGO-MANUAL3 에서 이어진다.
+다음 <strong> "4. 뷰와 템플릿" </strong> 은 <strong>DJANGO-MANUAL3</strong> 에서 이어진다.
